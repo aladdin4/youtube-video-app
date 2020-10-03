@@ -5,16 +5,20 @@ class SearchBar extends React.Component {
   state = {
     term: "",
   };
-  //on change callBack function
+
+  //on change callBack function, we use it to update our state
   onInputChange = (e) => {
     this.setState({ term: e.target.value });
   };
 
   //on submitting the form
   onFormSubmit = (e) => {
+    //
     //the first thing we stop the default behavior
     e.preventDefault();
-    console.log("form submitted" + {e.target.value});
+
+    //calling the parents call back function when the event take place
+    this.props.onFormSubmit(this.state.term);
   };
 
   render() {
