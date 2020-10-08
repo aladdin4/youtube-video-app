@@ -1,10 +1,17 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 import youtube from "../apis/youtube";
+import VideoList from "./VideoList";
+import VideoDetail from "./VideoDetail";
 
 class App extends React.Component {
-  state = { videos: [] };
+  state = { videos: [], selectedVideo: null };
   //
+  //callback-function for the click event.
+  onVideoSelect = (video) => {
+    this.setState({ selectedVideo: video });
+  };
+
   //the callback-function that will handle the event submit
   onFormSubmit = async (term) => {
     //
@@ -24,7 +31,11 @@ class App extends React.Component {
     return (
       <div className="ui container">
         <SearchBar onFormSubmit={this.onFormSubmit} />
-        <div>i have {this.state.videos.length} videos</div>
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList
+          videos={this.state.videos}
+          onVideoSelect={this.onVideoSelect}
+        />
       </div>
     );
   }
