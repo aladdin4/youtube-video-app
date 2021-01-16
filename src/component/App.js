@@ -1,6 +1,6 @@
 import React from "react";
 import SearchBar from "./SearchBar";
-import youtube from "../apis/youtube";
+import Youtube from "../apis/youtube";
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
 
@@ -16,7 +16,7 @@ class App extends React.Component {
   onFormSubmit = async (term) => {
     //
     //when the form is submitted we need to send a request with the term
-    const response = await youtube.get("/search", {
+    const response = await Youtube.get("/search", {
       params: {
         //the only dynamic part is the one we didn't insert in the axios instance which is the keyword we are searching for
         q: term,
@@ -51,7 +51,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.onFormSubmit("test");
+    this.onFormSubmit("cat");
   }
 }
 export default App;
